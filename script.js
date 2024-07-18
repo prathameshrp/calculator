@@ -30,6 +30,7 @@ const operatorMap = {
         if (b === 0) return "Like that's even allowed to do!"
         return (a / b).toFixed(5)
     },
+    "%": (a,b) => a*0.1,
 
 }
 
@@ -81,11 +82,7 @@ function populateDisplay(e) {
         displayValue = operate(displayValue);
         operator = '';
     }
-    else if(clickedOn.getAttribute("id") === "modulo")
-    {
-        operand1 = parseFloat(displayValue)*0.1;
-        displayValue = operand1;
-    }
+
     else if (clickedOn.classList.contains("operator")) {
 
         if (operator !== '') {
@@ -134,3 +131,11 @@ backSpace.addEventListener("click", ()=>
     display.textContent = displayValue;
     operator='';
 })
+
+
+//keyboard support:
+function keyBoardEvents(e)
+{
+    const supportedChars = "0123456789+-/*%"
+}
+keyboard.addEventListener("keydown", keyBoardEvents)
