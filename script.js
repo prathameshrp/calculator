@@ -64,6 +64,7 @@ function operate(operation) {
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
     // console.log(operator);
+    
     operand1 = operatorMap[operator](operand1, operand2);
     return operand1;
 
