@@ -80,6 +80,11 @@ function populateDisplay(e) {
         displayValue = operate(displayValue);
         operator = '';
     }
+    else if(clickedOn.getAttribute("id") === "modulo")
+    {
+        operand1 = parseFloat(displayValue)*0.1;
+        displayValue = operand1;
+    }
     else if (clickedOn.classList.contains("operator")) {
 
         if (operator !== '') {
@@ -89,7 +94,6 @@ function populateDisplay(e) {
         operator = `${clickedOn.value}`;
         displayValue += clickedOn.value;
         decimal.removeAttribute("disabled");
-
 
     }
 

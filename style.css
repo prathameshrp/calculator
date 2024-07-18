@@ -17,6 +17,7 @@ body
     font-family: "Work Sans", "sans-serif";
     /* gap: 50px; */
     justify-content: space-between;
+    border-radius: 5px;
 
 }
 
@@ -40,6 +41,7 @@ body
     text-align: right;
     overflow-x: scroll;
     overflow-y: hidden;
+    font-weight:300;
 }
 #display::-webkit-scrollbar{
     display: none;
@@ -73,6 +75,10 @@ body
     text-align: center;
 }
 
+.btn:hover
+{
+    opacity: 0.8;
+}
 .nrml
 {
     background-color: #2E2F38;
