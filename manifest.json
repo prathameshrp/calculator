@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Minimal Design Calculator",
+    "description": "A chrome extension Calculator",
+    "version": "1.0",
+    "author": "Prathamesh Patil",
+    "action": {
+      "default_popup": "index.html",
+      "default_title": "Calculator"
+    }
+  }
