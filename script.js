@@ -54,7 +54,7 @@ let operand1 = '';
 let operator = '';
 let operand2 = '';
 
-let exp = "2-3";
+let displayValue = "";
 
 function operate(operation) {
     const expressionElements = operation.split('');
@@ -67,4 +67,17 @@ function operate(operation) {
     
 }
 
-console.log(operate(exp));
+function populateDisplay(e)
+{
+    if(e.target.getAttribute("id") === "keyboard") return;
+    
+    const val = e.target.value;
+    displayValue += val;
+    display.textContent = displayValue;
+}
+
+const keyboard = document.querySelector("#keyboard");
+const display = document.querySelector("#display");
+
+keyboard.addEventListener("click", populateDisplay);
+// console.log(operate(exp));
