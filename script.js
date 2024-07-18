@@ -26,7 +26,10 @@ const operatorMap = {
     "+": (a, b) => a + b,
     "-": (a, b) => a - b,
     "*": (a, b) => a * b,
-    "/": (a, b) => a / b,
+    "/": (a, b) => {
+        if (b === 0) return "Like that's even allowed to do!"
+        return (a / b).toFixed(5)
+    },
 
 }
 
@@ -54,43 +57,46 @@ const operatorMap = {
 let operand1 = '';
 let operator = '';
 let operand2 = '';
-
+let allowDecimal = true;
 let displayValue = "";
 
 function operate(operation) {
-    console.log(operation, operator)
     const expressionElements = operation.split(operator);
     console.log(expressionElements);
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
-    // console.log(operator);
-    
+    if (typeof operand1 !== "number" || typeof operand2 !== "number") return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
+    if (operand1 % 1 === 0) return Math.round(operand1);
     return operand1;
 
 }
 
 function populateDisplay(e) {
     const clickedOn = e.target;
-    if (e.target.getAttribute("id") === "keyboard") return;
-    else if (e.target.getAttribute("id") === "calculate") {
+    if (clickedOn.getAttribute("id") === "keyboard") return;
+    else if (clickedOn.getAttribute("id") === "calculate") {
         displayValue = operate(displayValue);
         operator = '';
     }
-    else if (e.target.classList.contains("operator")) {
+    else if (clickedOn.classList.contains("operator")) {
 
         if (operator !== '') {
             displayValue = operate(displayValue);
         }
 
-        operator = `${e.target.value}`;
-        displayValue += e.target.value;
+        operator = `${clickedOn.value}`;
+        displayValue += clickedOn.value;
+        decimal.removeAttribute("disabled");
+
+
     }
 
     else {
-        const val = e.target.value;
+        const val = clickedOn.value;
         displayValue += val;
     }
+
     display.textContent = displayValue;
 }
 
@@ -98,5 +104,18 @@ const keyboard = document.querySelector("#keyboard");
 const display = document.querySelector("#display");
 
 keyboard.addEventListener("click", populateDisplay);
-// console.log(operate(exp));
 
+const clear = keyboard.querySelector("#clear");
+
+clear.addEventListener("click", () => {
+    displayValue = '';
+    operand1 = '';
+    operand2 = '';
+    operator = '';
+    display.textContent = '';
+    decimal.removeAttribute("disabled");
+
+})
+const decimal = keyboard.querySelector("#decimal");
+
+decimal.addEventListener("click", () => decimal.setAttribute("disabled", true));
