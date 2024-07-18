@@ -1,0 +1,32 @@
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#display
+{
+    width: 500px;
+    height: 300px;
+    background-color: rgb(197, 197, 197);
+}
+
+#keyboard
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.btn, .btn button
+{
+    height: 125px;
+    width: 125px;
+}
