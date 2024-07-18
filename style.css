@@ -28,6 +28,7 @@ body {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    gap: 19px;
 
 }
 
@@ -43,10 +44,22 @@ body {
     font-weight: 300;
 }
 
-#display::-webkit-scrollbar {
+#display::-webkit-scrollbar , #answer::-webkit-scrollbar{
     display: none;
 }
 
+#answer
+{
+    width: 430px;
+    height: 40px;
+    /* background-color: rgb(197, 197, 197); */
+    color: rgba(255, 255, 255, 0.445);
+    font-size: 40px;
+    text-align: right;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    font-weight: 300;
+}
 #keyboard {
     display: flex;
     flex-wrap: wrap;

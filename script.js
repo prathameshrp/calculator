@@ -58,8 +58,9 @@ const operatorMap = {
 let operand1 = '';
 let operator = '';
 let operand2 = '';
-let allowDecimal = true;
 let displayValue = "";
+const display = document.querySelector("#display");
+const answer = document.querySelector("#answer");
 
 function operate(operation) {
     const expressionElements = operation.split(operator);
@@ -69,9 +70,13 @@ function operate(operation) {
     if (operand1 === NaN || !operand1) return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
     if (operand1 % 1 === 0) return Math.round(operand1);
-    return operand1;
+    return operand1
 
 }
+
+
+const keyboard = document.querySelector("#keyboard");
+keyboard.addEventListener("click", populateDisplay);
 
 function populateDisplay(e) {
     e.stopImmediatePropagation();
@@ -81,6 +86,7 @@ function populateDisplay(e) {
 
         displayValue = operate(displayValue);
         operator = '';
+        answer.textContent = displayValue;
     }
 
     else if (clickedOn.classList.contains("operator")) {
@@ -103,28 +109,23 @@ function populateDisplay(e) {
     display.textContent = displayValue;
 }
 
-const keyboard = document.querySelector("#keyboard");
-const display = document.querySelector("#display");
-
-keyboard.addEventListener("click", populateDisplay);
 
 const clear = keyboard.querySelector("#clear");
-
 clear.addEventListener("click", () => {
     displayValue = '';
     operand1 = '';
     operand2 = '';
     operator = '';
     display.textContent = '';
+    answer.textContent = '';
     decimal.removeAttribute("disabled");
 
 })
-const decimal = keyboard.querySelector("#decimal");
 
+const decimal = keyboard.querySelector("#decimal");
 decimal.addEventListener("click", () => decimal.setAttribute("disabled", true));
 
 const backSpace = keyboard.querySelector("#extra");
-
 backSpace.addEventListener("click", () => {
     if (displayValue[-1] === operator) {
         operator = '';
@@ -146,6 +147,8 @@ function keyBoardEvents(e) {
 
         displayValue = operate(displayValue);
         operator = '';
+        answer.textContent = displayValue;
+
     }
     else if (operators.includes(pressed)) {
         if (operator !== '') {
