@@ -127,15 +127,59 @@ const backSpace = keyboard.querySelector("#extra");
 
 backSpace.addEventListener("click", ()=>
 {
+    if(displayValue[-1] === operator)
+    {
+    operator = '';
+    }
     displayValue = displayValue.slice(0, -1);
     display.textContent = displayValue;
-    operator='';
 })
 
 
 //keyboard support:
+let supportedChars = "0123456789+-/*%=EnterBackspace.";
+
 function keyBoardEvents(e)
 {
-    const supportedChars = "0123456789+-/*%"
+    const operators = "+-/*%";
+    const pressed = e.key;
+    if(!supportedChars.includes(pressed)) return;
+
+    if(pressed === "=" || pressed === "Enter")
+    {
+
+        displayValue = operate(displayValue);
+        operator = '';
+    }
+    else if(operators.includes(pressed))
+    {
+        if (operator !== '') {
+            displayValue = operate(displayValue);
+        }
+
+        operator = `${pressed}`;
+        displayValue += pressed;
+        supportedChars.push('.');
+    }
+    else if(pressed === "Backspace")
+    {
+        if(displayValue[-1] === operator)
+            {
+            operator = '';
+            }
+            displayValue = displayValue.slice(0, -1);
+        display.textContent = displayValue;
+    }
+    else if(pressed === ".")
+    {
+        displayValue += pressed;
+        supportedChars = supportedChars.slice(0, -1);
+    }
+    else
+    {
+        displayValue += pressed;
+    }
+   
+    display.textContent = displayValue;
 }
-keyboard.addEventListener("keydown", keyBoardEvents)
+document.addEventListener("keydown", keyBoardEvents)
