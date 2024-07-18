@@ -159,7 +159,7 @@ function keyBoardEvents(e)
 
         operator = `${pressed}`;
         displayValue += pressed;
-        supportedChars.push('.');
+        supportedChars+=".";
     }
     else if(pressed === "Backspace")
     {
