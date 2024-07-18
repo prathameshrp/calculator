@@ -15,16 +15,34 @@ body
     height: 910px;
     width: 450px;
     font-family: "Work Sans", "sans-serif";
+    /* gap: 50px; */
+    justify-content: space-between;
 
 }
 
-#display
+
+.dis
 {
     width: 450px;
-    height: 350px;
+    height: 400px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    
+}
+#display
+{
+    width: 430px;
+    height: 96px;
     /* background-color: rgb(197, 197, 197); */
     color: white;
-
+    font-size: 96px;
+    text-align: right;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+#display::-webkit-scrollbar{
+    display: none;
 }
 
 #keyboard
@@ -45,7 +63,7 @@ body
     border: none;
     border-radius: 24px;
     color: white;
-
+    font-size: 32px;
     
 }
 .btn
