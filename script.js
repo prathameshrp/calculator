@@ -65,8 +65,8 @@ function operate(operation) {
     console.log(expressionElements);
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
+    if(operand1 === NaN || !operand1) return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
-    if(operand1 === NaN || !operand1) return "ERROR";;
     if (operand1 % 1 === 0) return Math.round(operand1);
     return operand1;
 
@@ -77,6 +77,7 @@ function populateDisplay(e) {
     const clickedOn = e.target;
     if (clickedOn.getAttribute("id") === "keyboard" || clickedOn.tagName.toLowerCase() === "div") return;
     else if (clickedOn.getAttribute("id") === "calculate") {
+
         displayValue = operate(displayValue);
         operator = '';
     }
@@ -124,3 +125,11 @@ clear.addEventListener("click", () => {
 const decimal = keyboard.querySelector("#decimal");
 
 decimal.addEventListener("click", () => decimal.setAttribute("disabled", true));
+
+const backSpace = keyboard.querySelector("#extra");
+
+backSpace.addEventListener("click", ()=>
+{
+    displayValue = displayValue.slice(0, -1);
+    display.textContent = displayValue;
+})
