@@ -30,7 +30,7 @@ const operatorMap = {
         if (b === 0) return "Like that's even allowed to do!"
         return (a / b).toFixed(5)
     },
-    "%": (a,b) => a*0.1,
+    "%": (a, b) => a * 0.1,
 
 }
 
@@ -66,7 +66,7 @@ function operate(operation) {
     console.log(expressionElements);
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
-    if(operand1 === NaN || !operand1) return "ERROR";
+    if (operand1 === NaN || !operand1) return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
     if (operand1 % 1 === 0) return Math.round(operand1);
     return operand1;
@@ -125,11 +125,9 @@ decimal.addEventListener("click", () => decimal.setAttribute("disabled", true));
 
 const backSpace = keyboard.querySelector("#extra");
 
-backSpace.addEventListener("click", ()=>
-{
-    if(displayValue[-1] === operator)
-    {
-    operator = '';
+backSpace.addEventListener("click", () => {
+    if (displayValue[-1] === operator) {
+        operator = '';
     }
     displayValue = displayValue.slice(0, -1);
     display.textContent = displayValue;
@@ -139,47 +137,40 @@ backSpace.addEventListener("click", ()=>
 //keyboard support:
 let supportedChars = "0123456789+-/*%=EnterBackspace.";
 
-function keyBoardEvents(e)
-{
+function keyBoardEvents(e) {
     const operators = "+-/*%";
     const pressed = e.key;
-    if(!supportedChars.includes(pressed)) return;
+    if (!supportedChars.includes(pressed)) return;
 
-    if(pressed === "=" || pressed === "Enter")
-    {
+    if (pressed === "=" || pressed === "Enter") {
 
         displayValue = operate(displayValue);
         operator = '';
     }
-    else if(operators.includes(pressed))
-    {
+    else if (operators.includes(pressed)) {
         if (operator !== '') {
             displayValue = operate(displayValue);
         }
 
         operator = `${pressed}`;
         displayValue += pressed;
-        supportedChars+=".";
+        supportedChars += ".";
     }
-    else if(pressed === "Backspace")
-    {
-        if(displayValue[-1] === operator)
-            {
+    else if (pressed === "Backspace") {
+        if (displayValue[-1] === operator) {
             operator = '';
-            }
-            displayValue = displayValue.slice(0, -1);
+        }
+        displayValue = displayValue.slice(0, -1);
         display.textContent = displayValue;
     }
-    else if(pressed === ".")
-    {
+    else if (pressed === ".") {
         displayValue += pressed;
         supportedChars = supportedChars.slice(0, -1);
     }
-    else
-    {
+    else {
         displayValue += pressed;
     }
-   
+
     display.textContent = displayValue;
 }
 document.addEventListener("keydown", keyBoardEvents)
