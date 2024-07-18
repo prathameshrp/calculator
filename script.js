@@ -132,4 +132,5 @@ backSpace.addEventListener("click", ()=>
 {
     displayValue = displayValue.slice(0, -1);
     display.textContent = displayValue;
+    operator='';
 })
