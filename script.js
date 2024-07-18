@@ -14,7 +14,7 @@
 
  */
 
-    // A very straightforward approach:
+// A very straightforward approach:
 
 // function add(...nums) {
 
@@ -23,10 +23,10 @@
 
 //this sh*t is hot:
 const operatorMap = {
-    "+": (a,b) => a+b,
-    "-": (a,b) => a-b,
-    "*": (a,b) => a*b,
-    "/": (a,b) => a/b,
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
 
 }
 
@@ -61,37 +61,34 @@ function operate(operation) {
     console.log(operation, operator)
     const expressionElements = operation.split(operator);
     console.log(expressionElements);
-    operand1 = parseInt(expressionElements[0]);
-    operand2 = parseInt(expressionElements[1]);
-    console.log(operator);
+    operand1 = parseFloat(expressionElements[0]);
+    operand2 = parseFloat(expressionElements[1]);
+    // console.log(operator);
     operand1 = operatorMap[operator](operand1, operand2);
     return operand1;
-    
+
 }
 
-function populateDisplay(e)
-{
+function populateDisplay(e) {
     const clickedOn = e.target;
-    if(e.target.getAttribute("id") === "keyboard") return;
-    else if(e.target.getAttribute("id") === "calculate")      
-        {
-            displayValue = operate(displayValue);
-            operator = '';
-        }
-    else if(e.target.classList.contains("operator"))
-    {
+    if (e.target.getAttribute("id") === "keyboard") return;
+    else if (e.target.getAttribute("id") === "calculate") {
+        displayValue = operate(displayValue);
+        operator = '';
+    }
+    else if (e.target.classList.contains("operator")) {
 
-        if(operator !== ''){
+        if (operator !== '') {
             displayValue = operate(displayValue);
         }
-        
+
         operator = `${e.target.value}`;
-        displayValue+= e.target.value;
-    }   
-   
-    else{
-    const val = e.target.value;
-    displayValue += val;
+        displayValue += e.target.value;
+    }
+
+    else {
+        const val = e.target.value;
+        displayValue += val;
     }
     display.textContent = displayValue;
 }
