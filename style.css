@@ -3,15 +3,16 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #E5E5E5;
+    transform: scale(0.9);
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 11px;
+    margin-top: 30px;
     background-color: #17171c;
-    height: 856px;
-    width: 430px;
+    height: 910px;
+    width: 450px;
     font-family: "Work Sans", "sans-serif";
     /* gap: 50px; */
     justify-content: space-between;
@@ -33,7 +34,7 @@ body {
 }
 
 #display {
-    width: 380px;
+    width: 430px;
     height: 96px;
     /* background-color: rgb(197, 197, 197); */
     color: white;
@@ -50,7 +51,7 @@ body {
 
 #answer
 {
-    width: 380px;
+    width: 430px;
     height: 40px;
     /* background-color: rgb(197, 197, 197); */
     color: rgba(255, 255, 255, 0.445);
@@ -83,7 +84,7 @@ body {
 
 .btn {
     height: 112px;
-    width: 101px;
+    width: 105px;
     text-align: center;
 }
 
