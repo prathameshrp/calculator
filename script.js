@@ -49,7 +49,7 @@ const operatorMap = {
 // }
 
 // console.log(add(2,3), sub(2,3), multiply(2,3), divide(2,3));
-
+// console.log();
 let operand1 = '';
 let operator = '';
 let operand2 = '';
@@ -57,11 +57,12 @@ let operand2 = '';
 let displayValue = "";
 
 function operate(operation) {
-    const expressionElements = operation.split('');
-    operand1 = parseInt(expressionElements[0]);
-    operator = expressionElements[1];
-    operand2 = parseInt(expressionElements[2]);
-
+    const passedOperator = Object.keys(operatorMap).filter((e)=>operation.includes(e))
+    const expressionElements = operation.split(passedOperator);
+    operand1 = expressionElements[0];
+    operator = passedOperator;
+    operand2 = expressionElements[1];
+    console.log(expressionElements);
     operand1 = operatorMap[operator](operand1, operand2);
     return operand1;
     
@@ -70,9 +71,14 @@ function operate(operation) {
 function populateDisplay(e)
 {
     if(e.target.getAttribute("id") === "keyboard") return;
-    
+    if(e.target.getAttribute("id") === "calculate")
+    {
+        displayValue = operate(displayValue);
+    }
+    else{
     const val = e.target.value;
     displayValue += val;
+    }
     display.textContent = displayValue;
 }
 
@@ -81,3 +87,4 @@ const display = document.querySelector("#display");
 
 keyboard.addEventListener("click", populateDisplay);
 // console.log(operate(exp));
+
