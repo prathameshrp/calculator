@@ -27,7 +27,7 @@ const operatorMap = {
     "-": (a, b) => a - b,
     "*": (a, b) => a * b,
     "/": (a, b) => {
-        if (b === 0) return "Like that's even allowed to do!"
+        if (b === 0) return "Nuh Uh!"
         return (a / b).toFixed(5)
     },
     "%": (a, b) => a * 0.1,
