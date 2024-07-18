@@ -23,6 +23,8 @@ body
     width: 450px;
     height: 350px;
     /* background-color: rgb(197, 197, 197); */
+    color: white;
+
 }
 
 #keyboard
@@ -33,6 +35,7 @@ body
     box-sizing: border-box;
     padding: 30px 13px;
     /* justify-content: center; */
+
 }
 
 .btn, .btn button

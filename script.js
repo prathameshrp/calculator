@@ -65,16 +65,17 @@ function operate(operation) {
     console.log(expressionElements);
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
-    if (typeof operand1 !== "number" || typeof operand2 !== "number") return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
+    if(operand1 === NaN || !operand1) return "ERROR";;
     if (operand1 % 1 === 0) return Math.round(operand1);
     return operand1;
 
 }
 
 function populateDisplay(e) {
+    e.stopImmediatePropagation();
     const clickedOn = e.target;
-    if (clickedOn.getAttribute("id") === "keyboard") return;
+    if (clickedOn.getAttribute("id") === "keyboard" || clickedOn.tagName.toLowerCase() === "div") return;
     else if (clickedOn.getAttribute("id") === "calculate") {
         displayValue = operate(displayValue);
         operator = '';
