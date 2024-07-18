@@ -50,6 +50,7 @@ const operatorMap = {
 
 // console.log(add(2,3), sub(2,3), multiply(2,3), divide(2,3));
 // console.log();
+
 let operand1 = '';
 let operator = '';
 let operand2 = '';
@@ -57,12 +58,12 @@ let operand2 = '';
 let displayValue = "";
 
 function operate(operation) {
-    const passedOperator = Object.keys(operatorMap).filter((e)=>operation.includes(e))
-    const expressionElements = operation.split(passedOperator);
-    operand1 = expressionElements[0];
-    operator = passedOperator;
-    operand2 = expressionElements[1];
+    console.log(operation, operator)
+    const expressionElements = operation.split(operator);
     console.log(expressionElements);
+    operand1 = parseInt(expressionElements[0]);
+    operand2 = parseInt(expressionElements[1]);
+    console.log(operator);
     operand1 = operatorMap[operator](operand1, operand2);
     return operand1;
     
@@ -70,11 +71,24 @@ function operate(operation) {
 
 function populateDisplay(e)
 {
+    const clickedOn = e.target;
     if(e.target.getAttribute("id") === "keyboard") return;
-    if(e.target.getAttribute("id") === "calculate")
+    else if(e.target.getAttribute("id") === "calculate")      
+        {
+            displayValue = operate(displayValue);
+            operator = '';
+        }
+    else if(e.target.classList.contains("operator"))
     {
-        displayValue = operate(displayValue);
-    }
+
+        if(operator !== ''){
+            displayValue = operate(displayValue);
+        }
+        
+        operator = `${e.target.value}`;
+        displayValue+= e.target.value;
+    }   
+   
     else{
     const val = e.target.value;
     displayValue += val;
