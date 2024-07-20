@@ -30,7 +30,7 @@ const operatorMap = {
         if (b === 0) return "Nuh Uh!"
         return (a / b).toFixed(5)
     },
-    "%": (a, b) => a * 0.1,
+    "%": (a, b) => (a * 0.1).toFixed(5),
 
 }
 
@@ -67,10 +67,10 @@ function operate(operation) {
     console.log(expressionElements);
     operand1 = parseFloat(expressionElements[0]);
     operand2 = parseFloat(expressionElements[1]);
-    if (operand1 === NaN || !operand1) return "ERROR";
     operand1 = operatorMap[operator](operand1, operand2);
+    if (isNaN(operand1)) return "ERROR";
     if (operand1 % 1 === 0) return Math.round(operand1);
-    return operand1
+    return operand1;
 
 }
 
@@ -105,7 +105,6 @@ function populateDisplay(e) {
         const val = clickedOn.value;
         displayValue += val;
     }
-
     display.textContent = displayValue;
 }
 

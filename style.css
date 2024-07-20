@@ -3,7 +3,9 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #E5E5E5;
-    transform: scale(0.9);
+    transform: scale(0.5);
+    width: 200px;
+    height: 400px;
 }
 
 .container {
